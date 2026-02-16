@@ -1,0 +1,449 @@
+/* =========================================
+   1. CORE VARIABLES & THEME
+   ========================================= */
+:root {
+    /* Brand Identity */
+    --primary: #6F2DBD;
+    --primary-dark: #4a1d80;
+    --secondary: #A663CC;
+    --accent: #d8b4fe;
+    
+    --gradient-main: linear-gradient(135deg, #6F2DBD 0%, #A663CC 100%);
+    
+    /* Light Theme */
+    --bg-body: #F8F9FD;
+    --bg-glass: rgba(255, 255, 255, 0.7);
+    --bg-card: #FFFFFF;
+    --text-main: #171123;
+    --text-muted: #64748b;
+    --border: rgba(111, 45, 189, 0.15);
+    --shadow: 0 10px 40px rgba(111, 45, 189, 0.08);
+    --nav-bg: rgba(255, 255, 255, 0.95);
+    --hover-bg: rgba(111, 45, 189, 0.05);
+}
+
+[data-theme="dark"] {
+    /* Dark Theme */
+    --bg-body: #0f0b15;
+    --bg-glass: rgba(20, 15, 30, 0.6);
+    --bg-card: rgba(30, 25, 45, 0.5);
+    --text-main: #ffffff;
+    --text-muted: #a0a0c0;
+    --border: rgba(255, 255, 255, 0.1);
+    --shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    --nav-bg: rgba(15, 11, 21, 0.95);
+    --hover-bg: rgba(255, 255, 255, 0.05);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.3s ease; }
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* =========================================
+   2. BACKGROUND ANIMATION
+   ========================================= */
+.ambient-glow {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    z-index: -1; overflow: hidden; pointer-events: none;
+}
+.orb {
+    position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.3;
+    animation: floatOrb 20s infinite alternate;
+}
+.orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: var(--primary); }
+.orb-2 { bottom: -10%; right: -10%; width: 40vw; height: 40vw; background: var(--secondary); animation-delay: -5s; }
+
+@keyframes floatOrb {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(40px, 60px); }
+}
+
+/* =========================================
+   3. NAVBAR
+   ========================================= */
+.navbar {
+    background: var(--nav-bg);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-weight: 1000;
+    font-size: 1.6rem;
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.nav-link {
+    font-weight: 1000;
+    color: var(--text-muted) !important;
+    margin: 0 12px;
+    font-size: 0.95rem;
+    padding: 10px 0;
+}
+.nav-link:hover, .nav-link.active { color: var(--primary) !important; }
+
+.btn-theme {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-main);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    margin-right: 12px;
+}
+.btn-theme:hover { background: var(--bg-card); border-color: var(--primary); }
+
+.btn-primary-custom {
+    background: var(--gradient-main);
+    color: white;
+    border: none;
+    padding: 11px 28px;
+    border-radius: 20px;
+    font-weight: 700;
+    box-shadow: 0 5px 15px rgba(111, 45, 189, 0.3);
+    text-decoration: none;
+    white-space: nowrap;
+}
+.btn-primary-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(111, 45, 189, 0.4);
+    color: white;
+}
+
+/* =========================================
+   4. HERO SECTION
+   ========================================= */
+.hero { padding: 60px 0; }
+
+.hero h1 {
+    font-size: 3.4rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--text-main) 30%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    line-height: 1.6;
+    max-width: 550px;
+}
+
+.hero-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 40px;
+}
+
+.hero-img {
+    width: 100%;
+    max-width: 350px; 
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(111, 45, 189, 0.3)); 
+    animation: floatImage 6s ease-in-out infinite;
+}
+
+@keyframes floatImage {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+
+.badge-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 16px; border-radius: 50px;
+    background: rgba(111, 45, 189, 0.1);
+    color: var(--primary); font-weight: 700; font-size: 0.9rem;
+    margin-bottom: 20px; border: 1px solid rgba(111, 45, 189, 0.2);
+}
+
+/* =========================================
+   5. CARDS
+   ========================================= */
+.glass-card {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 32px;
+    padding: 40px 32px;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+[data-theme="dark"] .glass-card {
+    background: rgba(30, 30, 40, 0.6);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.glass-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(111, 45, 189, 0.3);
+    box-shadow: 0 30px 60px -12px rgba(111, 45, 189, 0.15);
+}
+[data-theme="dark"] .glass-card:hover {
+    background: rgba(40, 40, 55, 0.8);
+    border-color: rgba(139, 92, 246, 0.3);
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5);
+}
+
+.card-icon {
+    width: 68px;
+    height: 68px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    color: white;
+    /* Center in card if needed */
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 24px;
+    box-shadow: 0 12px 24px -8px rgba(0,0,0,0.3);
+    transition: transform 0.4s ease;
+}
+
+.glass-card:hover .card-icon {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.glass-card h4 {
+    font-weight: 800;
+    font-size: 1.35rem;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+    color: var(--text-main);
+    text-align: center;
+}
+
+.glass-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.card-action {
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.card-action i { transition: transform 0.3s ease; }
+.glass-card:hover .card-action i { transform: translateX(6px); }
+
+/* =========================================
+   6. UTILITIES & DEGREE COLORS (NEW)
+   ========================================= */
+.bg-light { background-color: rgba(255,255,255,0.5) !important; }
+
+/* BBA Colors */
+.text-bba { color: #EC4899; }
+.bg-bba { background: linear-gradient(135deg, #EC4899, #DB2777); color: white; }
+
+/* MIT Colors */
+.text-mit { color: #8B5CF6; }
+.bg-mit { background: linear-gradient(135deg, #8B5CF6, #6D28D9); color: white; }
+
+/* BCOM Colors */
+.text-bcom { color: #F59E0B; }
+.bg-bcom { background: linear-gradient(135deg, #F59E0B, #D97706); }
+
+
+/* =========================================
+   7. FOOTER
+   ========================================= */
+footer {
+    margin-top: 60px;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+}
+
+/* Honors Colors */
+.border-bronze { border-color: #CD7F32 !important; }
+.text-bronze { color: #CD7F32 !important; }
+.bg-bronze { background-color: #CD7F32 !important; }
+
+/* Soft Backgrounds for Stats */
+.bg-soft-primary { background: rgba(13, 110, 253, 0.1); color: #0d6efd; }
+.bg-soft-info    { background: rgba(13, 202, 240, 0.1); color: #0dcaf0; }
+.bg-soft-success { background: rgba(25, 135, 84, 0.1);  color: #198754; }
+.bg-soft-danger  { background: rgba(220, 53, 69, 0.1);  color: #dc3545; }
+
+
+/* =========================================
+   FIX FOR NAVBAR COVERING TITLES
+   ========================================= */
+
+#academic-hub {
+    scroll-margin-top: 100px; /* Adjust this number if needed */
+}
+
+/* Optional: Makes the scroll slide smoothly instead of jumping */
+html {
+    scroll-behavior: smooth;
+}
+/* =========================================
+   8. MOBILE RESPONSIVENESS (CONSOLIDATED)
+   ========================================= */
+
+/* --- Tablet & Mobile (Below 992px) --- */
+@media (max-width: 991px) {
+    .section-padding { padding: 60px 0; }
+    
+    .glass-card {
+        padding: 30px 20px; /* Reduce padding */
+        margin-bottom: 20px;
+    }
+
+    .hero h1 { font-size: 2.5rem; }
+    
+    /* Center hero on mobile */
+    .hero { text-align: center; }
+    .hero .d-flex { justify-content: center; }
+    .hero-img { max-width: 280px; margin-top: 30px; }
+    
+    /* Mobile Navbar Card Style */
+    .navbar-collapse {
+        background: var(--bg-card);
+        padding: 20px;
+        border-radius: 16px;
+        margin-top: 10px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+    }
+}
+
+/* --- Mobile Phones (Below 768px) --- */
+@media (max-width: 768px) {
+    
+    /* Typography Adjustments */
+    .hero h1 { font-size: 2rem; }
+    .display-6 { font-size: 1.8rem; }
+
+    /* Card & Icon Adjustments */
+    .glass-card {
+        padding: 24px 16px; 
+        border-radius: 24px;
+    }
+    
+    .card-icon {
+        width: 50px; height: 50px;
+        font-size: 1.2rem; margin-bottom: 16px;
+    }
+}
+
+/* --- SMALL MOBILE FIXES (Table & Layout) (Below 500px) --- */
+@media (max-width: 500px) {
+
+    /* 1. Force Card Padding Small */
+    #academic-hub .glass-card {
+        padding: 15px !important;
+    }
+
+    /* 2. TABLE FIXES: Hide 'Status' Column */
+    .table th:nth-child(4),
+    .table td:nth-child(4) {
+        display: none !important;
+    }
+
+    /* 3. Tighten Cell Spacing */
+    .table th, .table td {
+        padding: 10px 5px !important; 
+        font-size: 0.9rem !important; 
+        white-space: nowrap; /* Prevent wrapping */
+    }
+
+    /* 4. Fix Range Column (Remove left gap) */
+    .table th:first-child,
+    .table td:first-child {
+        padding-left: 0 !important;
+        text-align: left;
+    }
+
+    /* 5. Center Grade & Points */
+    .table th:nth-child(2), .table td:nth-child(2),
+    .table th:nth-child(3), .table td:nth-child(3) {
+        text-align: center !important;
+    }
+
+    /* 6. Buttons */
+    .btn-primary-custom {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* =========================================
+   MOBILE FIX FOR MODERN CARDS
+   (Paste this at the bottom of your CSS file)
+   ========================================= */
+
+@media (max-width: 768px) {
+    /* 1. Reduce the big whitespace inside the card */
+    .card .card-body {
+        padding: 1.25rem !important; 
+    }
+
+    /* 2. Make the big Title Text smaller for phones */
+    .card h4 {
+        font-size: 1.2rem !important;
+    }
+    .card h5 {
+        font-size: 1.1rem !important;
+    }
+    
+    /* 3. Make the icons smaller so they don't look huge */
+    .card .rounded-3[style*="width: 50px"] {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    .card .rounded-3 i {
+        font-size: 1.1rem !important;
+    }
+}
+
+/* For very small phones (iPhone SE, Galaxy Fold) */
+@media (max-width: 380px) {
+    .card .col-4 {
+        width: 100% !important; /* Stack stats vertically */
+        margin-bottom: 5px;
+    }
+}

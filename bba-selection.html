@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Specialization | FMC GPA</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        @keyframes smoothFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        body { animation: smoothFadeIn 0.8s ease-out forwards; }
+
+        .spec-card {
+            cursor: pointer;
+            text-align: center;
+            padding: 28px 20px;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .spec-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary);
+            background: rgba(255,255,255,0.95);
+        }
+
+        [data-theme="dark"] .spec-card:hover {
+            background: rgba(40,40,55,0.95);
+        }
+
+        .spec-icon {
+            font-size: 2.4rem;
+            margin-bottom: 14px;
+            background: var(--gradient-main);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hover-arrow {
+            margin-top: 12px;
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: all 0.3s ease;
+            color: var(--primary);
+        }
+
+        .spec-card:hover .hover-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Mobile polish */
+        @media (max-width: 576px) {
+            .spec-card {
+                padding: 22px 18px;
+            }
+            .spec-card h5 {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-graduation-cap"></i> FMC.GPA
+            </a>
+            
+            <div class="d-flex align-items-center order-lg-3">
+                
+                <a href="index.html" class="btn-primary-custom d-none d-sm-block ms-2">Back to Home</a>
+                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon" style="filter: invert(0.5);"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="d-lg-none mt-3">
+                    <a href="index.html" class="btn-primary-custom w-100 d-block text-center">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+<section class="section-padding" style="padding-top:60px;">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <a href="index.html" class="text-decoration-none text-muted d-inline-block mb-3">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            <h2 class="fw-extrabold">BBA Specialization</h2>
+            <p class="text-muted fs-5">
+                Select your specific area to load the correct grading logic
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+
+            <!-- CARD 1 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="glass-card spec-card" onclick="location.href='BBA-AccountingGPA.html'">
+                    <i class="fas fa-calculator spec-icon"></i>
+                    <h5>BBA Accounting Specialisation Programme</h5>
+                    <i class="fas fa-arrow-right hover-arrow"></i>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="glass-card spec-card" onclick="location.href='BBA-FinanceGPA.html'">
+                    <i class="fas fa-chart-line spec-icon"></i>
+                    <h5>BBA Finance Specialisation Programme</h5>
+                    <i class="fas fa-arrow-right hover-arrow"></i>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="glass-card spec-card" onclick="location.href='BBA-HrmGPA.html'">
+                    <i class="fas fa-users spec-icon"></i>
+                    <h5>BBA Human Resource Management Specialisation Programme</h5>
+                    <i class="fas fa-arrow-right hover-arrow"></i>
+                </div>
+            </div>
+
+            <!-- CARD 4 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="glass-card spec-card" onclick="location.href='BBA-MarketingGPA.html'">
+                    <i class="fas fa-bullhorn spec-icon"></i>
+                    <h5>BBA Marketing Specialisation Programme</h5>
+                    <i class="fas fa-arrow-right hover-arrow"></i>
+                </div>
+            </div>
+
+            <!-- CARD 5 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="glass-card spec-card" onclick="location.href='BBA-ISGPA.html'">
+                    <i class="fas fa-laptop-code spec-icon"></i>
+                    <h5>BBA Information Systems Specialisation Programme</h5>
+                    <i class="fas fa-arrow-right hover-arrow"></i>
+                </div>
+            </div>
+
+            <!-- CARD 6 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="glass-card spec-card" onclick="location.href='BBA-SpecialGPA.html'">
+                    <i class="fas fa-star spec-icon"></i>
+                    <h5>BBA (Special) Degree Programme</h5>
+                    <i class="fas fa-arrow-right hover-arrow"></i>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer class="py-4">
+    <div class="container text-center">
+        <small class="text-muted fw-medium">
+            Developed by <span style="color:var(--primary);font-weight:700;">Dinod Deshanjana</span>
+        </small>
+    </div>
+</footer>
+
+<script>
+function toggleTheme() {
+    const html = document.documentElement;
+    const icon = document.getElementById('themeIcon');
+
+    if (html.getAttribute('data-theme') === 'light') {
+        html.setAttribute('data-theme', 'dark');
+        icon.className = 'fas fa-sun';
+        localStorage.setItem('theme', 'dark');
+    } else {
+        html.setAttribute('data-theme', 'light');
+        icon.className = 'fas fa-moon';
+        localStorage.setItem('theme', 'light');
+    }
+}
+
+if (localStorage.getItem('theme') === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.getElementById('themeIcon').className = 'fas fa-sun';
+}
+</script>
+
+</body>
+</html>

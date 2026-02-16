@@ -1,0 +1,1029 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>BBA Marketing GPA Calculator - FMC</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* --- THEME: ORIGINAL PURPLE --- */
+      :root {
+        --primary: #6f2dbd;
+        --primary-dark: #4a1d80;
+        --secondary: #a663cc;
+        --accent: #d8b4fe;
+        --primary-purple: #6f2dbd;
+        --secondary-purple: #a663cc;
+        --gradient-1: linear-gradient(135deg, #6f2dbd 0%, #a663cc 100%);
+        --bg-body: #fbfbfb;
+        --bg-card: #ffffff;
+        --text-main: #171123;
+        --text-muted: #6b7280;
+        --border: rgba(111, 45, 189, 0.15);
+        --nav-bg: rgba(251, 251, 251, 0.9);
+        --shadow-custom: 0 10px 30px rgba(111, 45, 189, 0.08);
+        --input-bg: #f8f9fa;
+        --radial-bg: rgba(111, 45, 189, 0.05);
+        --success: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --gradient-main: linear-gradient(135deg, #6f2dbd 0%, #a663cc 100%);
+      }
+
+      [data-theme="dark"] {
+        --bg-body: #171123;
+        --bg-card: rgba(255, 255, 255, 0.03);
+        --text-main: #fbfbfb;
+        --text-muted: #a09db0;
+        --border: rgba(255, 255, 255, 0.1);
+        --nav-bg: rgba(23, 17, 35, 0.9);
+        --shadow-custom: 0 10px 30px rgba(0, 0, 0, 0.4);
+        --input-bg: rgba(255, 255, 255, 0.05);
+        --radial-bg: rgba(255, 255, 255, 0.05);
+        --primary-purple: #a663cc;
+        --secondary-purple: #6f2dbd;
+        --gradient-1: linear-gradient(135deg, #a663cc 0%, #6f2dbd 100%);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        transition:
+          background-color 0.3s,
+          color 0.3s,
+          border-color 0.3s;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        min-height: 100vh;
+        padding-bottom: 80px;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      .navbar-brand {
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* --- NAVBAR --- */
+      .navbar {
+        background: var(--nav-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        padding: 0.8rem 0;
+        z-index: 1000;
+      }
+
+      .navbar-brand {
+        font-weight: 800;
+        font-size: 1.3rem;
+        background: var(--gradient-main);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -0.5px;
+      }
+
+      .btn-theme {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--text-main);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin-right: 12px;
+        transition: transform 0.2s;
+      }
+
+      .btn-primary-custom {
+        background: var(--gradient-main);
+        color: white;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 50px;
+        font-weight: 700;
+        box-shadow: 0 5px 15px rgba(111, 45, 189, 0.3);
+        text-decoration: none;
+        white-space: nowrap;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+
+      /* --- DASHBOARD --- */
+      .app-container {
+        max-width: 800px;
+        margin: 30px auto 60px;
+        padding: 0 20px;
+      }
+
+      .page-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .page-header h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1.2;
+        background: linear-gradient(
+          135deg,
+          var(--text-main) 30%,
+          var(--primary) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .page-header p {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        margin-top: 8px;
+      }
+
+      /* --- RADIAL GPA --- */
+      .gpa-hub {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+        position: relative;
+      }
+
+      .radial-progress {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: conic-gradient(
+          var(--primary-purple) var(--degrees, 0deg),
+          var(--radial-bg) 0deg
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        box-shadow: var(--shadow-custom);
+        transition: --degrees 1s ease-out;
+      }
+
+      .radial-progress::before {
+        content: "";
+        position: absolute;
+        width: 170px;
+        height: 170px;
+        background: var(--bg-body);
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      .gpa-value {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+      }
+      .gpa-number {
+        font-size: 3.2rem;
+        font-weight: 800;
+        line-height: 1;
+        font-family: "Poppins", sans-serif;
+        background: var(--gradient-1);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .gpa-label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .class-badge {
+        margin-top: -20px;
+        z-index: 3;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        padding: 8px 20px;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text-main);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        backdrop-filter: blur(10px);
+      }
+
+      /* --- STATUS ALERTS --- */
+      .status-alert {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 12px;
+        background: rgba(239, 68, 68, 0.1);
+        border: 1px solid rgba(239, 68, 68, 0.2);
+        color: var(--danger);
+        font-size: 0.9rem;
+        display: none;
+      }
+      .status-alert.active {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+      .status-alert.success {
+        background: rgba(16, 185, 129, 0.1);
+        border-color: rgba(16, 185, 129, 0.2);
+        color: var(--success);
+      }
+
+      /* --- ACCORDIONS --- */
+      .semester-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 30px;
+      }
+
+      .glass-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: var(--shadow-custom);
+        transition: transform 0.2s;
+      }
+
+      .card-header {
+        padding: 18px 20px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        user-select: none;
+        background: rgba(255, 255, 255, 0.01);
+      }
+      .card-header:active {
+        background: rgba(0, 0, 0, 0.02);
+      }
+
+      .sem-name {
+        font-weight: 600;
+        font-size: 1rem;
+        color: var(--text-main);
+      }
+      .sem-status {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--border);
+        transition: background 0.3s;
+      }
+      .glass-card.active .status-dot {
+        background: var(--primary-purple);
+        box-shadow: 0 0 10px var(--primary-purple);
+      }
+
+      .card-body {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.4s ease-out;
+        background: var(--input-bg);
+      }
+      .glass-card.active .card-body {
+        grid-template-rows: 1fr;
+      }
+
+      .card-content {
+        overflow: hidden;
+        min-height: 0;
+        opacity: 0;
+        visibility: hidden;
+        padding: 0 15px;
+        transition:
+          padding 0.3s ease,
+          opacity 0.3s ease,
+          visibility 0.3s ease;
+      }
+      .glass-card.active .card-content {
+        opacity: 1;
+        visibility: visible;
+        padding: 15px 15px 20px;
+      }
+
+      /* --- MODULES --- */
+      .module-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .module-row:last-child {
+        border-bottom: none;
+      }
+
+      .mod-info {
+        font-weight: 500;
+        font-size: 0.9rem;
+        color: var(--text-main);
+        flex: 1;
+        padding-right: 15px;
+        line-height: 1.4;
+      }
+      .mod-credits {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-top: 4px;
+        display: block;
+      }
+      .badge-aux {
+        font-size: 0.65rem;
+        background: var(--warning);
+        color: white;
+        padding: 2px 6px;
+        border-radius: 4px;
+        margin-left: 5px;
+        vertical-align: text-top;
+      }
+      .badge-elective {
+        font-size: 0.65rem;
+        background: var(--secondary-purple);
+        color: white;
+        padding: 2px 6px;
+        border-radius: 4px;
+        margin-left: 5px;
+        vertical-align: text-top;
+      }
+
+      select {
+        appearance: none;
+        width: 70px;
+        height: 40px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        color: var(--text-main);
+        padding: 0 10px;
+        border-radius: 10px;
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+        outline: none;
+        font-size: 0.95rem;
+      }
+      select:focus {
+        border-color: var(--primary-purple);
+        box-shadow: 0 0 0 3px rgba(111, 45, 189, 0.1);
+      }
+
+      /* --- STATS --- */
+      .stats-bar {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 30px;
+      }
+      .stat-box {
+        background: var(--bg-card);
+        border-radius: 16px;
+        padding: 15px 10px;
+        text-align: center;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-custom);
+      }
+      .stat-box small {
+        color: var(--text-muted);
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+      .stat-box div {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text-main);
+        margin-top: 4px;
+      }
+
+      /* --- MOBILE STICKY BAR --- */
+      .mobile-sticky-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--bg-card);
+        border-top: 1px solid var(--border);
+        padding: 12px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 999;
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+      }
+      .mobile-sticky-bar.visible {
+        transform: translateY(0);
+      }
+      .sticky-info {
+        display: flex;
+        flex-direction: column;
+      }
+      .sticky-label {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      .sticky-value {
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: var(--primary-purple);
+      }
+      .sticky-credits {
+        font-size: 0.85rem;
+        color: var(--text-main);
+        font-weight: 500;
+      }
+
+      footer {
+        margin-top: auto;
+        padding: 40px 0;
+        border-top: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .footer-link {
+        color: var(--primary-purple);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: 0.2s;
+      }
+      .footer-link:hover {
+        text-decoration: underline;
+        color: var(--secondary-purple);
+      }
+
+      /* --- SMOOTH PAGE LOAD ANIMATION --- */
+
+      /* 1. Define the animation (Fade In + Slide Up) */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px); /* Start slightly lower */
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0); /* End in natural position */
+        }
+      }
+
+      /* 2. Apply it to the main sections */
+      .navbar,
+      .app-container,
+      footer {
+        opacity: 0; /* Start hidden so it doesn't flash */
+        animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      }
+
+      /* 3. Add delays for a "Waterfall" effect */
+      /* The navbar appears first */
+      .navbar {
+        animation-delay: 0ms;
+      }
+
+      /* The main content follows slightly after */
+      .app-container {
+        animation-delay: 150ms;
+      }
+
+      /* The footer appears last */
+      footer {
+        animation-delay: 300ms;
+      }
+
+      @media (max-width: 576px) {
+        .app-container {
+          margin-top: 20px;
+          padding: 0 15px;
+        }
+        .radial-progress {
+          width: 170px;
+          height: 170px;
+        }
+        .radial-progress::before {
+          width: 140px;
+          height: 140px;
+        }
+        .gpa-number {
+          font-size: 2.5rem;
+        }
+        .stats-bar {
+          grid-template-columns: 1fr 1fr;
+        }
+        .stat-box:last-child {
+          grid-column: span 2;
+        }
+      }
+      @media (min-width: 992px) {
+        .mobile-sticky-bar {
+          display: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <i class="fas fa-bullhorn"></i> BBA Marketing GPA
+        </a>
+
+        <div class="d-flex align-items-center order-lg-3">
+          <a href="index.html" class="btn-primary-custom d-none d-sm-block ms-2"
+            >Home</a
+          >
+          <button
+            class="navbar-toggler ms-2"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
+            <span
+              class="navbar-toggler-icon"
+              style="filter: invert(0.5)"
+            ></span>
+          </button>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="d-lg-none mt-3">
+            <a
+              href="index.html"
+              class="btn-primary-custom w-100 d-block text-center"
+              >Home</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="app-container">
+      <div class="page-header">
+        <h2>BBA Marketing Specialisation</h2>
+        <p>Track your GPA and check your eligibility (124 Credits).</p>
+      </div>
+
+      <div class="gpa-hub">
+        <div class="radial-progress" id="radialDial">
+          <div class="gpa-value">
+            <div class="gpa-number" id="mainGPA">0.00</div>
+            <div class="gpa-label">Cumulative GPA</div>
+          </div>
+        </div>
+        <div class="class-badge" id="classBadge">
+          <i class="fas fa-info-circle"></i> Start Grading
+        </div>
+        <div id="degreeStatusAlert" class="status-alert text-center">
+          <i class="fas fa-exclamation-triangle me-2"></i>
+          <span id="statusText">Requirements not met</span>
+        </div>
+      </div>
+
+      <div class="stats-bar">
+        <div class="stat-box">
+          <small>Total Credits</small>
+          <div id="totalCredits">0 / 124</div>
+        </div>
+        <div class="stat-box">
+          <small>Failures (E)</small>
+          <div id="failCount" style="color: var(--danger)">0</div>
+        </div>
+        <div class="stat-box">
+          <small>Poor Grades</small>
+          <div id="poorCount">0</div>
+        </div>
+      </div>
+
+      <div class="semester-list" id="semContainer"></div>
+    </div>
+
+    <div class="mobile-sticky-bar" id="mobileStickyBar">
+      <div class="sticky-info">
+        <span class="sticky-label">Current GPA</span>
+        <span class="sticky-value" id="stickyGPA">0.00</span>
+      </div>
+      <div class="text-end">
+        <span class="sticky-label d-block">Credits</span>
+        <span class="sticky-credits" id="stickyCredits">0 / 124</span>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container text-center">
+        <div class="mb-3">
+          <p class="small text-muted mb-1">
+            Based on regulations from the
+            <strong>Undergraduate Guide (2020/2021)</strong>.
+          </p>
+          <a href="#" class="footer-link">
+            <i class="fas fa-download me-1"></i> Download Official Guide
+          </a>
+        </div>
+        <div
+          class="border-top opacity-25 mx-auto mb-3"
+          style="width: 50%"
+        ></div>
+        <small class="text-muted fw-medium">
+          Developed by
+          <span style="color: var(--primary-purple); font-weight: 700"
+            >Dinod Deshanjana</span
+          >
+        </small>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // --- 1. THEME TOGGLE ---
+      function toggleTheme() {
+        const html = document.documentElement;
+        const icon = document.getElementById("themeIcon");
+        const navbarToggler = document.querySelector(".navbar-toggler-icon");
+        const isDark = html.getAttribute("data-theme") === "dark";
+        const newTheme = isDark ? "light" : "dark";
+        html.setAttribute("data-theme", newTheme);
+        localStorage.setItem("fmc-theme", newTheme);
+        if (navbarToggler)
+          navbarToggler.style.filter = isDark ? "invert(0.5)" : "invert(1)";
+      }
+
+      window.onload = () => {
+        if (localStorage.getItem("fmc-theme") === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+          const navbarToggler = document.querySelector(".navbar-toggler-icon");
+          if (navbarToggler) navbarToggler.style.filter = "invert(1)";
+        }
+
+        window.addEventListener("scroll", () => {
+          const hub = document.querySelector(".gpa-hub");
+          const stickyBar = document.getElementById("mobileStickyBar");
+          const hubBottom = hub.offsetTop + hub.offsetHeight;
+          if (window.scrollY > hubBottom) {
+            stickyBar.classList.add("visible");
+          } else {
+            stickyBar.classList.remove("visible");
+          }
+        });
+      };
+
+      // --- 2. DATA & CONFIGURATION ---
+      const gradeScale = {
+        "A+": 4.0,
+        A: 4.0,
+        "A-": 3.7,
+        "B+": 3.3,
+        B: 3.0,
+        "B-": 2.7,
+        "C+": 2.3,
+        C: 2.0,
+        "C-": 1.7,
+        "D+": 1.3,
+        D: 1.0,
+        E: 0.0,
+      };
+
+      const degreeCredits = 124;
+
+      const curriculum = {
+        "Year I – Semester I": [
+          { n: "ELM 11012 General English – I", c: 2 },
+          { n: "ISM 11013 Information & Communication Technology", c: 3 },
+          { n: "MGM 11013 Mathematics for Business", c: 3 },
+          { n: "BEM 11013 Micro Economics", c: 3 },
+          { n: "MGM 11023 Principles of Management", c: 3 },
+          { n: "MGM 11032 Psychology for Life", c: 2 },
+          { n: "SLA/TLA 11012 Sinhala/Tamil Language – I", c: 2, aux: true },
+        ],
+        "Year I – Semester II": [
+          { n: "ELM 12022 General English – II", c: 2 },
+          { n: "ISM 12023 Computer Literacy and Applications", c: 3 },
+          { n: "MGM 12043 Business Statistics", c: 3 },
+          { n: "BEM 12023 Macro Economics", c: 3 },
+          { n: "MGM 12052 Career Guidance & Development – I", c: 2 },
+          { n: "ACM 12013 Financial Accounting", c: 3 },
+          { n: "SLA/TLA 12022 Sinhala/Tamil Language – II", c: 2, aux: true },
+        ],
+        "Year II – Semester I": [
+          {
+            n: "MGM 21062 Introduction to Tourism & Hospitality Management",
+            c: 2,
+          },
+          { n: "MGM 21072 Ethnic Cohesion and Peace Building", c: 2 },
+          { n: "ACM 21023 Cost Accounting", c: 3 },
+          { n: "HRM 21013 Organizational Behavior", c: 3 },
+          { n: "ISM 21033 Management Information Systems", c: 3 },
+          { n: "MGM 21082 Commercial and Industrial Law", c: 2 },
+          { n: "MGM 21092 Business Communication", c: 2 },
+        ],
+        "Year II – Semester II": [
+          { n: "MGM 22103 Operations Management", c: 3 },
+          { n: "MKM 22013 Marketing Management", c: 3 },
+          { n: "FIM 22013 Financial Management", c: 3 },
+          { n: "HRM 22023 Human Resource Management", c: 3 },
+          { n: "MGM 22112 Entrepreneurial Development", c: 2 },
+          { n: "ACM 22033 Management Accounting", c: 3 },
+        ],
+        "Year III – Semester I": [
+          { n: "MKM 31023 Marketing Environment", c: 3 },
+          { n: "MKM 31033 Marketing Research and Information System", c: 3 },
+          { n: "MKM 31043 Business to Business and Service Marketing", c: 3 },
+          { n: "MGM 31123 Quantitative Techniques for Management", c: 3 },
+          { n: "ACM 31053 / ACM 31073 (Elective)", c: 3, elective: true },
+        ],
+        "Year III – Semester II": [
+          { n: "MKM 32052 Consumer Behaviour", c: 2 },
+          { n: "MKM 32062 Brand Management", c: 2 },
+          { n: "ISM 32073 Statistical Analysis for Management", c: 3 },
+          { n: "MKM 32073 Sales Management", c: 3 },
+          { n: "MKM 32112 Strategic Marketing Management", c: 2 },
+          { n: "REM 32012 Research Methodology", c: 2 },
+          { n: "BEM 32043 / MGM 32153 (Elective)", c: 3, elective: true },
+        ],
+        "Year IV – Semester I": [
+          { n: "MKM 41083 Public Relations and CRM", c: 3 },
+          { n: "MKM 41093 Marketing Communication Strategy", c: 3 },
+          { n: "MKM 41103 International Marketing", c: 3 },
+          { n: "ISM 41113 E-Commerce", c: 3 },
+          { n: "MGM 41163 Strategic Management", c: 3 },
+          { n: "MGM 41202 Business Ethics & Etiquettes", c: 2 },
+          { n: "MGM 41211 Career Guidance & Development - II", c: 1 },
+        ],
+        "Year IV – Semester II": [
+          { n: "INT 42002 Industrial Training - 2", c: 2 },
+          { n: "REM 42026 Dissertation", c: 6 },
+        ],
+      };
+
+      // --- 3. GENERATE UI ---
+      const container = document.getElementById("semContainer");
+
+      Object.keys(curriculum).forEach((sem, idx) => {
+        const modules = curriculum[sem];
+        const isActive = idx === 0 ? "active" : "";
+
+        let rowsHtml = "";
+
+        modules.forEach((m) => {
+          const isAux = m.aux ? 'data-aux="true"' : 'data-aux="false"';
+          let badgesHtml = "";
+          let displayName = m.n;
+
+          if (m.aux) {
+            badgesHtml += '<span class="badge-aux">Aux</span>';
+          }
+          if (m.elective) {
+            badgesHtml += '<span class="badge-elective">Elective</span>';
+          }
+
+          rowsHtml += `
+            <div class="module-row">
+                <div class="mod-info">
+                    ${displayName} ${badgesHtml}
+                    <div class="mod-credits">${m.c} Credits</div>
+                </div>
+                <div>
+                    <select class="grade-input" data-credit="${m.c}" ${isAux}>
+                        <option value="">--</option>
+                        <option value="A+">A+</option><option value="A">A</option><option value="A-">A-</option>
+                        <option value="B+">B+</option><option value="B">B</option><option value="B-">B-</option>
+                        <option value="C+">C+</option><option value="C">C</option><option value="C-">C-</option>
+                        <option value="D+">D+</option><option value="D">D</option><option value="E">E</option>
+                    </select>
+                </div>
+            </div>`;
+        });
+
+        const html = `
+        <div class="glass-card ${isActive}" id="card-${idx}">
+            <div class="card-header" onclick="toggleCard(${idx})">
+                <div class="sem-name">${sem}</div>
+                <div class="sem-status">
+                    <span id="sem-gpa-${idx}">--</span>
+                    <div class="status-dot"></div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-content"> ${rowsHtml} </div>
+            </div>
+        </div>`;
+
+        container.insertAdjacentHTML("beforeend", html);
+      });
+
+      function toggleCard(id) {
+        document.getElementById(`card-${id}`).classList.toggle("active");
+      }
+
+      // --- 4. CALCULATION ENGINE ---
+      document.querySelectorAll("select").forEach((input) => {
+        input.addEventListener("change", calculateDegree);
+      });
+
+      function calculateDegree() {
+        let totalPoints = 0;
+        let totalGPACredits = 0;
+        let totalEarnedCredits = 0;
+
+        let failCount = 0;
+        let poorGradesCount = 0;
+        let semesterPoorViolation = false;
+
+        let auxFailCount = 0; // Tracks Aux < C
+
+        // Class calculation counters
+        let totalCoursesTaken = 0;
+        let countA = 0; // A+, A
+        let countBOrBetter = 0; // B or better
+        let countBelowC = 0; // C-, D+, D, E
+
+        // ================= LOOP SEMESTERS =================
+        document.querySelectorAll(".glass-card").forEach((card, idx) => {
+          const inputs = card.querySelectorAll("select");
+          let semPoints = 0;
+          let semCredits = 0;
+          let semPoorGrades = 0;
+
+          inputs.forEach((inp) => {
+            if (!inp.value) return;
+
+            const grade = inp.value;
+            const credit = parseFloat(inp.getAttribute("data-credit"));
+            const isAux = inp.getAttribute("data-aux") === "true";
+
+            // --- AUXILIARY LOGIC ---
+            if (isAux) {
+              // Strict Completion Rule: Grade MUST be C or higher.
+              // C-, D+, D, E are all considered "Not Completed"
+              if (gradeScale[grade] < 2.0) {
+                auxFailCount++;
+              }
+              return; // Do NOT add to GPA or Poor Grade Counts
+            }
+
+            // --- CORE SUBJECT LOGIC ---
+            totalCoursesTaken++;
+            const gp = gradeScale[grade];
+
+            semPoints += credit * gp;
+            semCredits += credit;
+
+            totalPoints += credit * gp;
+            totalGPACredits += credit;
+
+            if (grade !== "E") {
+              totalEarnedCredits += credit;
+            } else {
+              failCount++;
+            }
+
+            // Poor Grades (C-, D+, D) - Only for Core
+            if (["C-", "D+", "D"].includes(grade)) {
+              poorGradesCount++;
+              semPoorGrades++;
+            }
+
+            // Class Eligibility Counters
+            if (["A+", "A"].includes(grade)) countA++;
+            if (gradeScale[grade] >= 3.0) countBOrBetter++;
+            if (["C-", "D+", "D", "E"].includes(grade)) countBelowC++;
+          });
+
+          // Semester GPA Display
+          const semGpaDisplay = document.getElementById(`sem-gpa-${idx}`);
+          if (semCredits > 0) {
+            semGpaDisplay.innerText = (semPoints / semCredits).toFixed(2);
+            if (semPoorGrades > 1) {
+              semGpaDisplay.innerText += " ⚠️";
+              semesterPoorViolation = true;
+            }
+          } else {
+            semGpaDisplay.innerText = "--";
+          }
+        });
+
+        // ================= FINAL CGPA =================
+        const cgpa = totalGPACredits > 0 ? totalPoints / totalGPACredits : 0;
+        const cgpaFixed = cgpa.toFixed(2);
+
+        // ================= UI UPDATE =================
+        const totalCreditsText = `${totalEarnedCredits} / ${degreeCredits}`;
+
+        document.getElementById("mainGPA").innerText = cgpaFixed;
+        document.getElementById("totalCredits").innerText = totalCreditsText;
+        document.getElementById("failCount").innerText = failCount;
+        document.getElementById("poorCount").innerText = poorGradesCount;
+
+        // Sticky Bar Update
+        document.getElementById("stickyGPA").innerText = cgpaFixed;
+        document.getElementById("stickyCredits").innerText = totalCreditsText;
+
+        const degrees = (Math.min(cgpa, 4.0) / 4.0) * 360;
+        document
+          .getElementById("radialDial")
+          .style.setProperty("--degrees", `${degrees}deg`);
+
+        // ================= ELIGIBILITY =================
+        const statusAlert = document.getElementById("degreeStatusAlert");
+        const statusText = document.getElementById("statusText");
+        const classBadge = document.getElementById("classBadge");
+
+        let issues = [];
+
+        // Requirements per Section 6.1 BBA
+        if (totalEarnedCredits < degreeCredits)
+          issues.push(`Need ${degreeCredits} Credits`);
+        if (cgpa < 2.0) issues.push("Minimum GPA 2.00 required");
+        if (failCount > 0) issues.push("Must repeat E grades");
+        if (poorGradesCount > 4) issues.push("Max 4 Poor Grades allowed");
+        if (semesterPoorViolation) issues.push("Max 1 Poor Grade per Sem");
+        if (auxFailCount > 0) issues.push("Must complete Aux (Min C)");
+
+        if (totalGPACredits === 0 && auxFailCount === 0) {
+          statusAlert.classList.remove("active");
+          classBadge.innerHTML =
+            '<i class="fas fa-info-circle"></i> Start Grading';
+          return;
+        }
+
+        if (issues.length === 0) {
+          const halfCourses = totalCoursesTaken / 2;
+
+          let finalClass = "General Pass";
+          let badgeIcon = "fa-check-circle";
+          let badgeColor = "var(--success)";
+
+          // Check Classes - Section 6.4
+          if (countBelowC === 0) {
+            if (cgpa >= 3.7 && countA >= halfCourses) {
+              finalClass = "First Class";
+              badgeIcon = "fa-trophy";
+              badgeColor = "#F59E0B";
+            } else if (cgpa >= 3.3 && countBOrBetter >= halfCourses) {
+              finalClass = "Second Upper";
+              badgeIcon = "fa-medal";
+              badgeColor = "var(--primary-purple)";
+            } else if (cgpa >= 3.0 && countBOrBetter >= halfCourses) {
+              finalClass = "Second Lower";
+              badgeIcon = "fa-award";
+              badgeColor = "var(--secondary-purple)";
+            }
+          }
+
+          statusAlert.className = "status-alert active success";
+          statusText.innerHTML = "<strong>Eligible for Degree!</strong>";
+          classBadge.innerHTML = `<i class="fas ${badgeIcon}" style="color:${badgeColor}"></i> ${finalClass}`;
+        } else {
+          statusAlert.className = "status-alert active";
+          statusText.innerHTML = "<strong>Pending:</strong> " + issues[0];
+          classBadge.innerHTML =
+            '<i class="fas fa-spinner fa-spin"></i> In Progress';
+        }
+      }
+    </script>
+  </body>
+</html>

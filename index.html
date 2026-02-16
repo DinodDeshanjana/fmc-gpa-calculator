@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FMC GPA Calculator | Student Portal</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* --- SMOOTH LOAD ANIMATION --- */
+        @keyframes smoothFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        body {
+            /* Applies the animation over 0.8 seconds */
+            animation: smoothFadeIn 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-graduation-cap"></i> FMC.GPA
+            </a>
+            
+            <div class="d-flex align-items-center order-lg-3">
+                
+                <a href="#programs" class="btn-primary-custom d-none d-sm-block ms-2">Start Now</a>
+                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon" style="filter: invert(0.5);"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#programs">Degree Programs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#academic-hub">Guidelines</a></li>
+                </ul>
+                <div class="d-lg-none mt-3">
+                    <a href="#programs" class="btn-primary-custom w-100 d-block text-center">Start Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 ps-lg-5">                    
+                    <div class="badge-pill">
+                        <i class="fas fa-sparkles"></i> 2026 Updated Version
+                    </div>
+                    <h1>Track Your Academic Performance</h1>
+                    <p>The modern GPA calculator for the Faculty of Management & Commerce. Track your progress for MIT, BBA, and BCom degrees with precision.</p>
+                    <div class="d-flex gap-3 justify-content-center justify-content-lg-start flex-wrap"> <a href="#programs" class="btn-primary-custom">Calculate Now</a>
+                        <a href="#guidelines" class="btn btn-theme" style="width: auto; padding: 0 25px; border-radius: 50px; font-weight: 600;">Guidelines</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center hero-img-container">
+                    <img src="12.png" alt="Student Graduate" class="img-fluid hero-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="programs" style="padding: 100px 0; ">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 style="font-weight: 800; font-size: 2.4rem; letter-spacing: -1px;">Select Your Degree</h2>
+                <p class="text-muted fs-5">Choose your department to load the grading logic</p>
+            </div>
+
+            <div class="row g-4">
+                
+                <div class="col-md-4">
+                    <div class="glass-card" onclick="window.location.href='MIT-GPA.html'">
+                        <div class="card-icon bg-mit">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h4>B.Sc. in MIT Degree Programme</h4>
+                        <p>Management & Information Technology. Includes logic for both Special and General degrees.</p>
+                        <span class="card-action text-mit">Start Calculation <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="glass-card" onclick="window.location.href='bba-selection.html'">
+                        <div class="card-icon bg-bba">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h4>Bachelor of Business Administration Programmes</h4>
+                        <p>Bachelor of Business Administration. Select your specific specialization area.</p>
+                        <span class="card-action text-bba">Select Degree Program <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="glass-card" onclick="window.location.href='Bcom-GPA.html'">
+                        <div class="card-icon bg-bcom">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h4>B.Com. Special Degree Programme</h4>
+                        <p>Bachelor of Commerce (Honours). Specialized financial calculation logic included.</p>
+                        <span class="card-action text-bcom">Start Calculation <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+<section class="section-padding" id="academic-hub">
+    <div class="container">
+
+        <!-- Section Heading -->
+        <div class="text-center mb-5">
+            <h2 class="fw-bolder display-6 mb-2">Academic Standards</h2>
+            <p class="text-muted">Official grading scheme and degree completion roadmaps</p>
+        </div>
+
+        <!-- Scheme of Grading (CENTERED) -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-xl-10 col-lg-11">
+                <div class="glass-card p-3 p-md-4">
+
+                    <div class="d-flex align-items-center justify-content-center mb-4 border-bottom pb-3 text-center">
+                        <h4 class="fw-bold m-0">Scheme of Grading</h4>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0 text-center">
+                            <thead style="background: rgba(0,0,0,0.02);">
+                                <tr class="text-uppercase small text-muted">
+                                    <th class="py-3 text-start ps-3 ps-md-5">Marks Range</th>
+                                    <th class="py-3">Grade</th>
+                                    <th class="py-3">Points</th>
+                                    <th class="py-3 text-end pe-3 pe-md-5 d-none d-sm-table-cell">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-start ps-3 ps-md-5 fw-bold">75 - 100</td>
+                                    <td><span class="badge bg-success bg-opacity-10 text-success">A+</span></td>
+                                    <td class="fw-bold">4.00</td>
+                                    <td class="text-end pe-3 pe-md-5 d-none d-sm-table-cell text-success fw-bold">Excellent</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 ps-md-5 fw-bold">70 - 74</td>
+                                    <td><span class="badge bg-success bg-opacity-10 text-success">A</span></td>
+                                    <td class="fw-bold">4.00</td>
+                                    <td class="text-end pe-3 pe-md-5 d-none d-sm-table-cell text-success fw-bold">Excellent</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 ps-md-5 fw-bold">65 - 69</td>
+                                    <td><span class="badge bg-success bg-opacity-10 text-success">A-</span></td>
+                                    <td class="fw-bold">3.70</td>
+                                    <td class="text-end pe-3 pe-md-5 d-none d-sm-table-cell text-success fw-bold">Excellent</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 ps-md-5 fw-bold">60 - 64</td>
+                                    <td><span class="badge bg-primary bg-opacity-10 text-primary">B+</span></td>
+                                    <td class="fw-bold">3.30</td>
+                                    <td class="text-end pe-3 pe-md-5 d-none d-sm-table-cell text-primary fw-bold">Good</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 ps-md-5 fw-bold">55 - 59</td>
+                                    <td><span class="badge bg-primary bg-opacity-10 text-primary">B</span></td>
+                                    <td class="fw-bold">3.00</td>
+                                    <td class="text-end pe-3 pe-md-5 d-none d-sm-table-cell text-primary fw-bold">Good</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 ps-md-5 fw-bold">50 - 54</td>
+                                    <td><span class="badge bg-primary bg-opacity-10 text-primary">B-</span></td>
+                                    <td class="fw-bold">2.70</td>
+                                    <td class="text-end pe-3 pe-md-5 d-none d-sm-table-cell text-primary fw-bold">Good</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 ps-md-5 fw-bold">45 - 49</td>
+                                    <td><span class="badge bg-warning bg-opacity-10 text-warning">C+</span></td>
+                                    <td class="fw-bold">2.30</td>
+                                    <td class="text-end pe-3 pe-md-5 d-none d-sm-table-cell text-warning fw-bold">Pass</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 ps-md-5 fw-bold">40 - 44</td>
+                                    <td><span class="badge bg-warning bg-opacity-10 text-warning">C</span></td>
+                                    <td class="fw-bold">2.00</td>
+                                    <td class="text-end pe-3 pe-md-5 d-none d-sm-table-cell text-warning fw-bold">Pass</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 ps-md-5 fw-bold">35 - 39</td>
+                                    <td><span class="badge bg-warning bg-opacity-10 text-warning">C-</span></td>
+                                    <td class="fw-bold">1.70</td>
+                                    <td class="text-end pe-3 pe-md-5 d-none d-sm-table-cell text-warning fw-bold">Weak</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 ps-md-5 fw-bold">30 - 34</td>
+                                    <td><span class="badge bg-danger bg-opacity-10 text-danger">D+</span></td>
+                                    <td class="fw-bold">1.30</td>
+                                    <td class="text-end pe-3 pe-md-5 d-none d-sm-table-cell text-danger fw-bold">Conditional</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 ps-md-5 fw-bold">25 - 29</td>
+                                    <td><span class="badge bg-danger bg-opacity-10 text-danger">D</span></td>
+                                    <td class="fw-bold">1.00</td>
+                                    <td class="text-end pe-3 pe-md-5 d-none d-sm-table-cell text-danger fw-bold">Conditional</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 ps-md-5 fw-bold">00 - 24</td>
+                                    <td><span class="badge bg-danger bg-opacity-10 text-danger">E</span></td>
+                                    <td class="fw-bold text-danger">0.00</td>
+                                    <td class="text-end pe-3 pe-md-5 d-none d-sm-table-cell text-danger fw-bold">Fail</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Heading -->
+        <div class="text-center mb-5">
+            <h2 class="fw-bolder display-6 mb-2">Degree Completion Roadmaps</h2>
+            <p class="text-muted">    Structured academic pathways outlining credit requirements, GPA standards, and milestones for successful degree completion.
+</p>
+        </div>
+
+
+        <!-- Degree Cards (CENTERED) -->
+        <section class="container mb-5">
+    <div class="row g-4 justify-content-center">
+
+        <div class="col-lg-5 col-md-6">
+            <div class="card h-100 border-0 shadow rounded-4 overflow-hidden position-relative">
+                <div style="height: 6px; background: #db2777;"></div>
+                
+                <div class="card-body p-4">
+                    
+                    <div class="d-flex justify-content-between align-items-start mb-4">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="d-flex align-items-center justify-content-center rounded-3" 
+                                 style="width: 50px; height: 50px; background-color: #fce7f3; color: #db2777;">
+                                <i class="fas fa-briefcase fs-4"></i>
+                            </div>
+                            <div>
+                                <h4 class="fw-bold m-0 text-dark">BBA & B.Com</h4>
+                                <span class="badge rounded-pill mt-1" style="background-color: #fce7f3; color: #db2777;">
+                                    Special Degree
+                                </span>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <h5 class="fw-bold m-0 text-dark">4</h5>
+                            <small class="text-muted fw-bold text-uppercase" style="font-size: 0.65rem;">Years</small>
+                        </div>
+                    </div>
+
+                    <div class="row g-2 mb-4">
+                        <div class="col-4">
+                            <div class="p-2 rounded-3 text-center" style="background-color: #f8fafc;">
+                                <small class="d-block text-secondary fw-bold" style="font-size: 0.65rem;">CREDITS</small>
+                                <span class="fw-bolder text-dark h5 d-block m-0">124</span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-2 rounded-3 text-center" style="background-color: #f0fdf4;">
+                                <small class="d-block text-success fw-bold" style="font-size: 0.65rem;">MIN GPA</small>
+                                <span class="fw-bolder text-dark h5 d-block m-0">2.00</span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-2 rounded-3 text-center" style="background-color: #fef2f2;">
+                                <small class="d-block text-danger fw-bold" style="font-size: 0.65rem;">MAX POOR</small>
+                                <span class="fw-bolder text-dark h5 d-block m-0">04</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h6 class="fw-bold text-dark m-0 text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.5px;">Awarding Criteria</h6>
+                            <small class="text-muted fst-italic" style="font-size: 0.75rem;">*50% Rule Applies</small>
+                        </div>
+
+                        <div class="d-flex flex-column gap-2">
+                            <div class="d-flex align-items-center justify-content-between p-2 rounded-3 border border-light shadow-sm">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="fas fa-medal text-warning"></i>
+                                    <div class="lh-1">
+                                        <span class="d-block fw-bold text-dark" style="font-size: 0.9rem;">First Class</span>
+                                        <small class="text-muted" style="font-size: 0.7rem;">A/A+ in 50%</small>
+                                    </div>
+                                </div>
+                                <span class="badge bg-dark">3.70+</span>
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-between p-2 rounded-3 border border-light shadow-sm">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="fas fa-medal text-secondary"></i>
+                                    <div class="lh-1">
+                                        <span class="d-block fw-bold text-dark" style="font-size: 0.9rem;">Second Upper</span>
+                                        <small class="text-muted" style="font-size: 0.7rem;">B or better in 50%</small>
+                                    </div>
+                                </div>
+                                <span class="badge bg-secondary">3.30+</span>
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-between p-2 rounded-3 border border-light shadow-sm">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="fas fa-medal" style="color: #cd7f32;"></i>
+                                    <div class="lh-1">
+                                        <span class="d-block fw-bold text-dark" style="font-size: 0.9rem;">Second Lower</span>
+                                        <small class="text-muted" style="font-size: 0.7rem;">B or better in 50%</small>
+                                    </div>
+                                </div>
+                                <span class="badge" style="background-color: #cd7f32;">3.00+</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-5 col-md-6">
+            <div class="card h-100 border-0 shadow rounded-4 overflow-hidden position-relative">
+                <div style="height: 6px; background: #7c3aed;"></div>
+                
+                <div class="card-body p-4">
+                    
+                    <div class="d-flex justify-content-between align-items-start mb-4">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="d-flex align-items-center justify-content-center rounded-3" 
+                                 style="width: 50px; height: 50px; background-color: #ede9fe; color: #7c3aed;">
+                                <i class="fas fa-laptop-code fs-4"></i>
+                            </div>
+                            <div>
+                                <h4 class="fw-bold m-0 text-dark">B.Sc. in MIT</h4>
+                                <span class="badge rounded-pill mt-1" style="background-color: #ede9fe; color: #7c3aed;">
+                                    General Degree
+                                </span>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <h5 class="fw-bold m-0 text-dark">3</h5>
+                            <small class="text-muted fw-bold text-uppercase" style="font-size: 0.65rem;">Years</small>
+                        </div>
+                    </div>
+
+                    <div class="row g-2 mb-4">
+                        <div class="col-4">
+                            <div class="p-2 rounded-3 text-center" style="background-color: #f8fafc;">
+                                <small class="d-block text-secondary fw-bold" style="font-size: 0.65rem;">CREDITS</small>
+                                <span class="fw-bolder text-dark h5 d-block m-0">97</span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-2 rounded-3 text-center" style="background-color: #f0fdf4;">
+                                <small class="d-block text-success fw-bold" style="font-size: 0.65rem;">MIN GPA</small>
+                                <span class="fw-bolder text-dark h5 d-block m-0">2.00</span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-2 rounded-3 text-center" style="background-color: #fef2f2;">
+                                <small class="d-block text-danger fw-bold" style="font-size: 0.65rem;">MAX POOR</small>
+                                <span class="fw-bolder text-dark h5 d-block m-0">03</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h6 class="fw-bold text-dark m-0 text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.5px;">Awarding Criteria</h6>
+                            <small class="text-muted fst-italic" style="font-size: 0.75rem;">*50% Rule Applies</small>
+                        </div>
+
+                        <div class="d-flex flex-column gap-2">
+                            <div class="d-flex align-items-center justify-content-between p-2 rounded-3 border border-light shadow-sm">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="fas fa-medal text-warning"></i>
+                                    <div class="lh-1">
+                                        <span class="d-block fw-bold text-dark" style="font-size: 0.9rem;">First Class</span>
+                                        <small class="text-muted" style="font-size: 0.7rem;">A/A+ in 50%</small>
+                                    </div>
+                                </div>
+                                <span class="badge bg-dark">3.70+</span>
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-between p-2 rounded-3 border border-light shadow-sm">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="fas fa-medal text-secondary"></i>
+                                    <div class="lh-1">
+                                        <span class="d-block fw-bold text-dark" style="font-size: 0.9rem;">Second Upper</span>
+                                        <small class="text-muted" style="font-size: 0.7rem;">B or better in 50%</small>
+                                    </div>
+                                </div>
+                                <span class="badge bg-secondary">3.30+</span>
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-between p-2 rounded-3 border border-light shadow-sm">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="fas fa-medal" style="color: #cd7f32;"></i>
+                                    <div class="lh-1">
+                                        <span class="d-block fw-bold text-dark" style="font-size: 0.9rem;">Second Lower</span>
+                                        <small class="text-muted" style="font-size: 0.7rem;">B or better in 50%</small>
+                                    </div>
+                                </div>
+                                <span class="badge" style="background-color: #cd7f32;">3.00+</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+        </div>
+
+    </div>
+</section>
+
+    </div>
+</section>
+
+    <footer>
+        <div class="container">
+            <div class="text-center">
+                <small class="text-muted fw-medium">
+                    Developed by <span style="color: var(--primary); font-weight: 700;">Dinod Deshanjana</span>
+                </small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            const navbarToggler = document.querySelector('.navbar-toggler-icon');
+            
+            if (html.getAttribute('data-theme') === 'light') {
+                html.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+                if(navbarToggler) navbarToggler.style.filter = 'invert(1)';
+            } else {
+                html.setAttribute('data-theme', 'light');
+                icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+                if(navbarToggler) navbarToggler.style.filter = 'invert(0)';
+            }
+        }
+
+        if(localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('themeIcon').className = 'fas fa-sun';
+            const navbarToggler = document.querySelector('.navbar-toggler-icon');
+            if(navbarToggler) navbarToggler.style.filter = 'invert(1)';
+        }
+    </script>
+</body>
+</html>
