@@ -128,7 +128,7 @@ body {
 .hero { padding: 60px 0; }
 
 .hero h1 {
-    font-size: 3.4rem;
+    font-size: 3.0rem;
     font-weight: 800;
     line-height: 1.2;
     margin-bottom: 20px;
@@ -156,7 +156,7 @@ body {
 
 .hero-img {
     width: 100%;
-    max-width: 350px; 
+    max-width: 360px; 
     height: auto;
     filter: drop-shadow(0 20px 40px rgba(111, 45, 189, 0.3)); 
     animation: floatImage 6s ease-in-out infinite;
