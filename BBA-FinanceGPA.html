@@ -124,9 +124,9 @@
       }
 
       /* --- DASHBOARD --- */
-      .app-container {
+.app-container {
         max-width: 800px;
-        margin: 20px auto 60px;
+        margin: 20px auto 30px; /* Changed 60px to 30px */
         padding: 0 20px;
       }
 
@@ -507,9 +507,9 @@
         font-weight: 600;
       }
 
-      footer {
+footer {
         margin-top: auto;
-        padding: 40px 0;
+        padding: 20px 0; /* Reduced from 40px */
         border-top: 1px solid var(--border);
         background: rgba(255, 255, 255, 0.02);
       }
@@ -622,9 +622,12 @@
         .mod-info { font-size: 0.85rem; }
       }
       
-      @media (min-width: 992px) {
+@media (min-width: 992px) {
         .mobile-sticky-bar {
           display: none !important;
+        }
+        body {
+          padding-bottom: 20px; /* Removes the huge 100px gap on desktop */
         }
       }
     </style>
@@ -704,6 +707,16 @@
       </div>
 
       <div class="semester-list" id="semContainer"></div>
+      <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow-custom); margin-top: 35px; padding: 25px;">
+        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; text-align: justify;">
+          <strong>Disclaimer:</strong> This is an independent student-developed project and is not affiliated with, endorsed by, or maintained by the Faculty of Management and Commerce, Southeastern University of Sri Lanka. GPA calculations are based on the Undergraduate Guide – Academic Year 2021/2022. Academic structures, subjects, and credit values may change in future years.
+        </p>
+        <div class="text-center">
+          <a href="#" style="display: inline-flex; align-items: center; justify-content: center; padding: 10px 24px; border-radius: 50px; border: 1px solid var(--border); color: var(--primary-purple); font-weight: 600; text-decoration: none; font-size: 0.9rem; background: var(--bg-card); transition: all 0.2s;">
+            <i class="fas fa-download me-2"></i> Download Official Guide
+          </a>
+        </div>
+      </div>
     </div>
 
     <div class="mobile-sticky-bar" id="mobileStickyBar">
@@ -717,23 +730,10 @@
       </div>
     </div>
 
-    <footer>
+<footer>
       <div class="container text-center">
-        <div class="mb-3">
-          <p class="small text-muted mb-1">
-            Based on regulations from the
-            <strong>Undergraduate Guide (2020/2021)</strong>.
-          </p>
-          <a href="#" class="footer-link">
-            <i class="fas fa-download me-1"></i> Download Official Guide
-          </a>
-        </div>
-        <div
-          class="border-top opacity-25 mx-auto mb-3"
-          style="width: 50%"
-        ></div>
         <small class="text-muted fw-medium">
-          Developed by
+          &copy; 2026 FMC GPA Calculator. Developed by
           <span style="color: var(--primary-purple); font-weight: 700"
             >Dinod Deshanjana</span
           >
@@ -905,13 +905,12 @@
             </div>`;
         });
 
-        const html = `
+const html = `
         <div class="glass-card ${isActive}" id="card-${idx}">
             <div class="card-header" onclick="toggleCard(${idx})">
                 <div class="sem-name">${sem}</div>
                 <div class="sem-status">
                     <span id="sem-gpa-${idx}">--</span>
-                    <div class="status-dot"></div>
                 </div>
             </div>
             <div class="card-body">
@@ -931,7 +930,7 @@
         input.addEventListener("change", calculateDegree);
       });
 
-      function calculateDegree() {
+function calculateDegree() {
         let totalPoints = 0;
         let totalGPACredits = 0;
         let totalEarnedCredits = 0;
@@ -940,7 +939,9 @@
         let poorGradesCount = 0;
         let semesterPoorViolation = false;
 
-        let auxFailCount = 0; // Tracks Aux < C
+        let auxFailCount = 0; 
+        let auxPassCount = 0; // NEW: Tracks passed Aux courses
+        const totalRequiredAux = 2; // BBA Finance has 2 Aux courses
 
         // Class calculation counters
         let totalCoursesTaken = 0;
@@ -965,8 +966,9 @@
             // --- AUXILIARY LOGIC ---
             if (isAux) {
               // Strict Completion Rule: Grade MUST be C or higher.
-              // C-, D+, D, E are all considered "Not Completed"
-              if (gradeScale[grade] < 2.0) {
+              if (gradeScale[grade] >= 2.0) {
+                auxPassCount++;
+              } else {
                 auxFailCount++;
               }
               return; // Do NOT add to GPA or Poor Grade Counts
@@ -1023,7 +1025,15 @@
         document.getElementById("mainGPA").innerText = cgpaFixed;
         document.getElementById("totalCredits").innerText = totalCreditsText;
         document.getElementById("failCount").innerText = failCount;
-        document.getElementById("poorCount").innerText = poorGradesCount;
+        
+        // UPDATED: Poor Grades UI Polish (Max 4 for BBA)
+        const poorCountEl = document.getElementById("poorCount");
+        poorCountEl.innerText = `${poorGradesCount} / 4`;
+        if (poorGradesCount > 4) {
+            poorCountEl.style.color = "var(--danger)";
+        } else {
+            poorCountEl.style.color = "inherit";
+        }
 
         // Sticky Bar Update
         document.getElementById("stickyGPA").innerText = cgpaFixed;
@@ -1048,9 +1058,10 @@
         if (failCount > 0) issues.push("Must repeat E grades");
         if (poorGradesCount > 4) issues.push("Max 4 Poor Grades allowed");
         if (semesterPoorViolation) issues.push("Max 1 Poor Grade per Sem");
-        if (auxFailCount > 0) issues.push("Must complete Aux (Min C)");
+        if (auxFailCount > 0) issues.push("Must repeat failed Aux courses (Min C)");
+        if (auxPassCount < totalRequiredAux) issues.push(`Must complete ${totalRequiredAux} Aux courses (Min C)`);
 
-        if (totalGPACredits === 0 && auxFailCount === 0) {
+        if (totalGPACredits === 0 && auxFailCount === 0 && auxPassCount === 0) {
           statusAlert.classList.remove("active");
           classBadge.innerHTML =
             '<i class="fas fa-info-circle"></i> Start Grading';

@@ -129,7 +129,7 @@ a, button {
 .section-padding { padding: 80px 0; }
 .section-title { font-weight: 800; font-size: 2.4rem; letter-spacing: -1px; }
 
-#academic-hub, #programs { scroll-margin-top: 80px; }
+#academic-hub, #programs { scroll-margin-top: 65px; }
 /* =========================================
    5. HERO SECTION
    ========================================= */
@@ -245,6 +245,8 @@ footer {
     background: rgba(255,255,255,0.02);
 }
 
+
+
 /* =========================================
    8. MOBILE RESPONSIVENESS
    ========================================= */
@@ -314,5 +316,132 @@ footer {
     .table th, .table td {
         font-size: 0.85rem;
         padding: 10px 8px !important;
+    }
+}
+
+/* =========================================
+   MODERN DISCLAIMER CARD STYLES
+   ========================================= */
+.disclaimer-card {
+    padding: 20px;
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    /* Removes the hover animation from this specific card so it stays static */
+    transform: none !important;
+    cursor: default !important;
+}
+.disclaimer-card:hover {
+    transform: none !important;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Orange Warning Top Line */
+.disclaimer-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+/* Icon Container */
+.disclaimer-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background-color: rgba(245, 158, 11, 0.15);
+    color: #d97706;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+
+/* List Styling */
+.disclaimer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.disclaimer-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+.disclaimer-list p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    text-align: left; /* Overrides the center alignment from earlier cards */
+}
+
+/* Number Badges */
+.list-badge {
+    min-width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background-color: rgba(111, 45, 189, 0.08);
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(111, 45, 189, 0.1);
+}
+
+/* Official Resource Box */
+.official-resource-box {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px dashed rgba(111, 45, 189, 0.3);
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s ease;
+}
+.official-resource-box:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-color: var(--primary);
+}
+
+.resource-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--gradient-main);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.resource-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+.resource-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* Mobile Adjustments for Disclaimer */
+@media (max-width: 768px) {
+    .official-resource-box {
+        padding: 16px;
+    }
+    .disclaimer-list p {
+        font-size: 0.9rem;
+    }
+    .disclaimer-card {
+        padding: 10px;
     }
 }
