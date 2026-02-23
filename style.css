@@ -239,12 +239,22 @@ a, button {
    7. FOOTER
    ========================================= */
 footer {
-    margin-top: 40px;
-    padding: 25px 0;
-    border-top: 1px solid var(--border);
-    background: rgba(255,255,255,0.02);
+        margin-top: auto;
+        padding: 20px 0; /* Reduced from 40px */
+        border-top: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.02);
+      }
+   .footer-link {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.94rem;
 }
 
+.developer-name {
+  color:#a133e1;
+  font-weight: 700;
+}
 
 
 /* =========================================
