@@ -52,8 +52,27 @@ a, button {
     position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.3;
     animation: floatOrb 20s infinite alternate;
 }
+/*
 .orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: var(--primary); }
 .orb-2 { bottom: -10%; right: -10%; width: 40vw; height: 40vw; background: var(--secondary); animation-delay: -5s; }
+*/
+.orb-1 { 
+    top: 0%; 
+    left: 5%; 
+    width: 45vw; 
+    height: 45vw; 
+    background: var(--primary); 
+}
+
+.orb-2 { 
+    /* Changed from 'bottom' to 'top' to pull it up behind the image */
+    top: 15%; 
+    right: 5%; 
+    width: 40vw; 
+    height: 40vw; 
+    background: var(--secondary); 
+    animation-delay: -5s; 
+}
 
 @keyframes floatOrb {
     0% { transform: translate(0, 0); }
