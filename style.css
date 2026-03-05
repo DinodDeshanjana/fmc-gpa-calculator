@@ -474,3 +474,115 @@ footer {
         padding: 10px;
     }
 }
+
+/* =========================================
+   9. ACADEMIC STANDARDS SPECIFIC STYLES
+   ========================================= */
+
+/* Adjusting the glass-card flex properties to support left-aligned text */
+.glass-card h4.text-start {
+    text-align: left !important;
+}
+
+.glass-card p.text-start {
+    text-align: left !important;
+}
+
+/* Custom Table Adjustments for the Grading Card */
+.custom-grading-table th {
+    border-bottom: 2px solid rgba(0,0,0,0.05);
+    font-weight: 600;
+}
+
+.custom-grading-table td {
+    padding: 8px 10px;
+    font-size: 0.98rem;
+    font-weight: bold;
+}
+
+/* Style the badges to look slightly more rectangular like the image */
+.grade-badge {
+    min-width: 45px;
+    padding: 6px 10px !important;
+    border-radius: 6px !important;
+}
+
+/* Formula Box */
+.formula-box {
+    background-color: #f0f7ff; /* Light blue background */
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.formula-box .border-primary {
+    border-color: #3b82f6 !important;
+}
+.formula-box .text-primary {
+    color: #3b82f6 !important;
+}
+
+/* Note on Auxiliary Courses */
+.gpa-info-note {
+    background-color: #f8fafc; /* Very light gray */
+    border-left: 4px solid #3b82f6; /* Blue left border */
+}
+
+/* =========================================
+   MOBILE ADJUSTMENTS FOR ACADEMIC STANDARDS
+   ========================================= */
+@media (max-width: 768px) {
+    /* 1. Scale down the table text so it fits perfectly without scrolling */
+    .custom-grading-table td {
+        font-size: 0.85rem;
+        padding: 8px 5px;
+    }
+    
+    .custom-grading-table th {
+        font-size: 0.8rem;
+        padding: 8px 5px;
+    }
+
+    .grade-badge {
+        min-width: 38px;
+        padding: 4px 8px !important;
+        font-size: 0.75rem;
+    }
+
+    /* 2. Make the formula box and text smaller so the math equation doesn't break */
+    .formula-box {
+        padding: 15px 10px !important;
+    }
+    
+    .formula-box .d-inline-flex {
+        font-size: 0.9rem;
+    }
+
+    .formula-box .text-primary {
+        font-size: 1rem !important; /* Shrink the overall formula size */
+    }
+
+    /* 3. Adjust the note box padding for narrow screens */
+    .gpa-info-note {
+        padding: 15px !important;
+    }
+    
+    .gpa-info-note .text-muted {
+        font-size: 0.8rem !important; /* Slightly smaller text */
+    }
+}
+
+/* Extra small phones specifically */
+@media (max-width: 400px) {
+    .formula-box .d-inline-flex span:first-child {
+        font-size: 0.75rem; /* Prevents "Credit x Grade Point" from wrapping */
+    }
+}
+/* Add hover popup animation to the Degree Completion Roadmap cards */
+.mobile-roadmap-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    cursor: pointer;
+}
+
+.mobile-roadmap-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 30px 60px -12px rgba(111, 45, 189, 0.15) !important;
+}
