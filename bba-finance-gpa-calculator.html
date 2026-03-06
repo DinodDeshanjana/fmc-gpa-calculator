@@ -529,20 +529,43 @@ footer {
       }
 
       /* --- SMOOTH PAGE LOAD ANIMATION --- */
-      @keyframes fadeInUp {
-        from {
+/* =========================================
+         SMOOTH PAGE LOAD ANIMATION (WATERFALL EFFECT)
+         ========================================= */
+      
+      /* 1. Create the ultra-smooth slide & fade animation */
+      @keyframes smoothFadeUp {
+        0% {
           opacity: 0;
-          transform: translateY(20px);
+          transform: translateY(25px);
         }
-        to {
+        100% {
           opacity: 1;
           transform: translateY(0);
         }
       }
 
-      .navbar { animation: fadeInUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
-      .app-container { opacity: 0; animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s forwards; }
-      footer { opacity: 0; animation: fadeInUp 0.8s ease 0.3s forwards; }
+      /* 2. Apply it to all major sections, keeping them invisible at the start */
+      .navbar, 
+      .page-header, 
+      .gpa-hub, 
+      .stats-bar, 
+      .semester-list, 
+      .disclaimer-box, 
+      footer {
+        opacity: 0;
+        /* cubic-bezier gives it a premium, fast-start / slow-end feel */
+        animation: smoothFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      /* 3. Stagger the delays so they load one after the other */
+      .navbar          { animation-delay: 0.0s; }
+      .page-header     { animation-delay: 0.1s; }
+      .gpa-hub         { animation-delay: 0.2s; }
+      .stats-bar       { animation-delay: 0.3s; }
+      .semester-list   { animation-delay: 0.4s; }
+      .disclaimer-box  { animation-delay: 0.5s; }
+      footer           { animation-delay: 0.6s; }
 
       /* --- MOBILE OPTIMIZATIONS (Tablet & Below) --- */
       @media (max-width: 768px) {
@@ -717,8 +740,7 @@ footer {
       </div>
 
       <div class="semester-list" id="semContainer"></div>
-      <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow-custom); margin-top: 35px; padding: 25px;">
-        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; text-align: justify;">
+<div class="disclaimer-box" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow-custom); margin-top: 35px; padding: 25px;">        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; text-align: justify;">
           <strong>Disclaimer:</strong> This is an independent student-developed project and is not affiliated with, endorsed by, or maintained by the Faculty of Management and Commerce, South Eastern University of Sri Lanka. GPA calculations are based on the  <b>Undergraduate Guide – Academic Year 2021/2022</b>. Academic structures, subjects, and credit values may change in future years.
         </p>
         <div class="text-center">
