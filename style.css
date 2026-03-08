@@ -3,6 +3,7 @@
    ========================================= */
 :root {
     /* Brand Identity */
+     color-scheme: light;
     --primary: #6F2DBD;
     --primary-dark: #4a1d80;
     --secondary: #A663CC;
