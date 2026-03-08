@@ -48,21 +48,6 @@
         --safe-bottom: env(safe-area-inset-bottom, 20px);
       }
 
-      [data-theme="dark"] {
-        --bg-body: #171123;
-        --bg-card: #1e1829;
-        --text-main: #fbfbfb;
-        --text-muted: #a09db0;
-        --border: rgba(255, 255, 255, 0.1);
-        --nav-bg: rgba(23, 17, 35, 0.95);
-        --shadow-custom: 0 10px 30px rgba(0, 0, 0, 0.4);
-        --input-bg: rgba(255, 255, 255, 0.05);
-        --radial-bg: rgba(255, 255, 255, 0.05);
-        --primary-purple: #a663cc;
-        --secondary-purple: #6f2dbd;
-        --gradient-1: linear-gradient(135deg, #a663cc 0%, #6f2dbd 100%);
-      }
-
       * {
         margin: 0;
         padding: 0;
@@ -495,9 +480,6 @@
         -webkit-backdrop-filter: blur(15px);
         background: rgba(255, 255, 255, 0.9);
       }
-      [data-theme="dark"] .mobile-sticky-bar {
-          background: rgba(30, 24, 41, 0.9);
-      }
 
       .mobile-sticky-bar.visible {
         transform: translateY(0);
@@ -805,25 +787,7 @@ footer {
 
     <script>
       // --- 1. THEME TOGGLE ---
-      function toggleTheme() {
-        const html = document.documentElement;
-        const icon = document.getElementById("themeIcon");
-        const navbarToggler = document.querySelector(".navbar-toggler-icon");
-        const isDark = html.getAttribute("data-theme") === "dark";
-        const newTheme = isDark ? "light" : "dark";
-        html.setAttribute("data-theme", newTheme);
-        localStorage.setItem("fmc-theme", newTheme);
-        if (navbarToggler)
-          navbarToggler.style.filter = isDark ? "invert(0.5)" : "invert(1)";
-      }
-
-      window.onload = () => {
-        if (localStorage.getItem("fmc-theme") === "dark") {
-          document.documentElement.setAttribute("data-theme", "dark");
-          const navbarToggler = document.querySelector(".navbar-toggler-icon");
-          if (navbarToggler) navbarToggler.style.filter = "invert(1)";
-        }
-
+   window.onload = () => {
         window.addEventListener("scroll", () => {
           const hub = document.querySelector(".gpa-hub");
           const stickyBar = document.getElementById("mobileStickyBar");
